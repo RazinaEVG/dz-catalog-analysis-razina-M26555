@@ -95,9 +95,6 @@ def average_rating(movies):
     return round(average, 1)
 
 
-print(average_rating(movies))
-
-
 def catalog_age_stats(movies, current_year=2026):
     ages = []
 
@@ -112,17 +109,11 @@ def catalog_age_stats(movies, current_year=2026):
     return (old, new, ave)
 
 
-print(catalog_age_stats(movies))
-
-
 def duration_in_hours(minutes):
     hours = minutes // 60
     remaining_minutes = minutes % 60
 
     return f"{hours}ч {remaining_minutes}м"
-
-
-print(duration_in_hours(155))
 
 
 def rating_tier(rating):
@@ -143,11 +134,27 @@ def decade_label(year):
         case _:
             return "старые"
 
+def print_non_comedy(movies):
+    for movie in movies:
+        if "comedy" in movie["genres"]:
+            continue
+        print(movie["title"])
 
-print(rating_tier(9.2))  # шедевр
 
-print(rating_tier(7.5))  # хорошо
+def find_first_masterpiece(movies, min_rating=9.0):
+    i = 0
+    while i < len(movies):
+        if movies[i]["rating"] > min_rating:
+            print(movies[i]["title"])
+            break
+        i += 1
+    else:
+        print("Шедевров не найдено")
 
-print(rating_tier(5.0))  # средне
 
-print(rating_tier(4.8))  # слабо
+def count_long_movies(movies, threshold=120):
+    count = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+    return count
