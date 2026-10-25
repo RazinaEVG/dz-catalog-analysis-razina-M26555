@@ -123,3 +123,31 @@ def duration_in_hours(minutes):
 
 
 print(duration_in_hours(155))
+
+
+def rating_tier(rating):
+    if rating >= 9.0:
+        return "шедевр"
+    elif rating >= 7.0:
+        return "хорошо"
+    else:
+        return "средне" if rating >= 5.0 else "слабо"
+
+
+def decade_label(year):
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if 2015 <= year <= 2020:
+            return "недавние"
+        case _:
+            return "старые"
+
+
+print(rating_tier(9.2))  # шедевр
+
+print(rating_tier(7.5))  # хорошо
+
+print(rating_tier(5.0))  # средне
+
+print(rating_tier(4.8))  # слабо
